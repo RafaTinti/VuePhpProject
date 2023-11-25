@@ -1,0 +1,8 @@
+--Read Single GET with param id
+http://localhost/vuephpproject/backend/api/customer/read.php
+--Read All GET
+http://localhost/vuephpproject/backend/api/customer/readAll.php
+--Create POST
+http://localhost/vuephpproject/backend/api/customer/create.php
+--Update PUT
+http://localhost/vuephpproject/backend/api/customer/update.php
