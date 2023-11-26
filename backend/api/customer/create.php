@@ -30,6 +30,7 @@
         $err = $customer->create();
         if($err){
             // error
+            http_response_code(500);
             echo json_encode([
                 "status" => "500",
                 "message" => $err,
@@ -37,13 +38,15 @@
         }
         else{
             // ok
+            http_response_code(201);
             echo json_encode([
                 "status" => "201",
-                "message" => "Data Created",
+                "message" => "Customer created successfully",
             ]);
         }
     } else{
         header("HTTP/1.0 405 Method now allowed");
+        http_response_code(405);
         echo json_encode([
             "status" => "405",
             'message' => $requestMethod. ' Method now allowed',

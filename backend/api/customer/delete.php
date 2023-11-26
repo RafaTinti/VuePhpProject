@@ -27,6 +27,7 @@
         $err = $customer->delete();
         if($err){
             // error
+            http_response_code(400);
             echo json_encode([
                 "status" => "400",
                 "message" => $err,
@@ -36,11 +37,12 @@
             // ok
             echo json_encode([
                 "status" => "200",
-                "message" => "Data deleted",
+                "message" => "Customer deleted",
             ]);
         }
     } else{
         header("HTTP/1.0 405 Method now allowed");
+        http_response_code(405);
         echo json_encode([
             "status" => "405",
             'message' => $requestMethod. ' Method now allowed',

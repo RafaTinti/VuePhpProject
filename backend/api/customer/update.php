@@ -30,6 +30,7 @@
         $err = $customer->update();
         if($err){
             // error
+            http_response_code(500);
             echo json_encode([
                 "status" => "500",
                 "message" => $err,
@@ -39,11 +40,12 @@
             // ok
             echo json_encode([
                 "status" => "200",
-                "message" => "Data updated",
+                "message" => "Customer updated successfully",
             ]);
         }
     } else{
         header("HTTP/1.0 405 Method now allowed");
+        http_response_code(405);
         echo json_encode([
             "status" => "405",
             'message' => $requestMethod. ' Method now allowed',

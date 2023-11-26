@@ -39,6 +39,7 @@
             
         } else{ 
             // no data found
+            http_response_code(404);
             echo json_encode([
                 "status" => "404",
                 "message" => "No customers found",
@@ -47,6 +48,7 @@
         }
     } else{
         header("HTTP/1.0 405 Method now allowed");
+        http_response_code(405);
         echo json_encode([
             "status" => "405",
             'message' => $requestMethod. ' Method now allowed',

@@ -15,6 +15,7 @@
         $customer->ID = isset($_GET['id']) ? $_GET['id'] : null;
 
         if($customer->ID == null){
+            http_response_code(400);
             echo json_encode([
                 "status" => "400",
                 "message" => "No ID given",
@@ -24,6 +25,7 @@
             $err = $customer->read();
 
             if($err){
+                http_response_code(500);
                 echo json_encode([
                     "status" => "500",
                     "message" => $err,
@@ -46,6 +48,7 @@
         }
     } else{
         header("HTTP/1.0 405 Method now allowed");
+        http_response_code(405);
         echo json_encode([
             "status" => "405",
             'message' => $requestMethod. ' Method now allowed',

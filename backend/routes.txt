@@ -6,3 +6,5 @@ http://localhost/vuephpproject/backend/api/customer/readAll.php
 http://localhost/vuephpproject/backend/api/customer/create.php
 --Update PUT
 http://localhost/vuephpproject/backend/api/customer/update.php
+--Delete DELETE
+http://localhost/vuephpproject/backend/api/customer/delete.php
