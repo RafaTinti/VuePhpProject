@@ -1,14 +1,19 @@
 <?php
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json");
-    header("Access-Control-Allow-Methods: POST");
+    header("Access-Control-Allow-Methods: POST, PUT, PATCH, GET, DELETE, OPTIONS");
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once "../../config/Database.php";
     include_once "../../models/Customer.php";
 
+    // for cors
+    if($_SERVER["REQUEST_METHOD"] == "OPTIONS"){
+        exit(0);
+    }
+
     $requestMethod = $_SERVER['REQUEST_METHOD'];
-    if($requestMethod == "PUT"){
+    if($requestMethod == "POST"){
         // Database
         $database = new Database();
         $db = $database->connect();
