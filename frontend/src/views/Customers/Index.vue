@@ -9,16 +9,16 @@
         <RouterLink class="btn btn-primary" to="/customers/create">Add Customer</RouterLink>
       </div>
       <div class="card-body table-responsive">
-        <table class="table table-responsive table-bordered">
-          <thead>
+        <table class="table table-responsive table-hover">
+          <thead class="bg-light">
             <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Date of Birth</th>
-              <th>Username</th>
-              <th>Password</th>
-              <th>Action</th>
+              <th class="fw-bold">ID</th>
+              <th class="fw-bold">First Name</th>
+              <th class="fw-bold">Last Name</th>
+              <th class="fw-bold">Date of Birth</th>
+              <th class="fw-bold">Username</th>
+              <th class="fw-bold">Password</th>
+              <th class="fw-bold text-center">Actions</th>
             </tr>
           </thead>
           <tbody v-if="this.customers.length > 0">
@@ -26,13 +26,12 @@
               <td>{{ customer.ID }}</td>
               <td>{{ customer.FirstName }}</td>
               <td>{{ customer.LastName }}</td>
-              <td>{{ customer.DateOfBirth }}</td>
+              <td>{{ formatDate(customer.DateOfBirth) }}</td>
               <td>{{ customer.Username }}</td>
               <td>{{ customer.Password }}</td>
               <td class="d-flex justify-content-evenly">
-                <RouterLink :to="{ path: `/customers/${customer.ID}/edit` }" class="btn btn-sm btn-primary">Edit
-                </RouterLink>
-                <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                <RouterLink :to="{ path: `/customers/${customer.ID}/edit` }" class="btn btn-sm btn-primary">Edit</RouterLink>
+                <button type="button" @click="deleteCustomer(customer.ID)" class="btn btn-sm btn-danger">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -50,6 +49,7 @@
 <script>
 import axios from "axios";
 import { curPage } from '../../main.js';
+import Swal from "sweetalert2";
 export default {
   name: "customers",
   data() {
@@ -71,6 +71,42 @@ export default {
       }).catch(err =>{
         console.log(err);
       })
+    },
+    deleteCustomer(id) {
+      Swal.fire({
+        icon: "warning",
+        title: "Are you sure you want to delete this item?",
+        showCancelButton: true,
+        cancelButtonColor: '#dd6b55',
+        showConfirmButton: true,
+      }).then(res => {
+        if (res.isConfirmed){
+          console.log(id);
+          axios({method: "DELETE",
+                url: "http://localhost/vuephpproject/backend/api/customer/delete.php",
+                data: {ID: id}}).then(res => {
+            Swal.fire({
+              title: 'Success',
+              icon: "success",
+              text: res.data.message,
+            })
+            this.getCustomers();
+          }).catch(err =>{
+            console.log(err);
+            Swal.fire({
+              title: 'Error',
+              icon: "error",
+              text: err.response.data.message,
+            })
+            this.getCustomers();
+          })
+        }
+      })
+    },
+    formatDate(d){
+      const parts = d.split("-");
+      return `${parts[2]}/${parts[1]}/${parts[0]}`;
+
     }
   }
 }
@@ -79,4 +115,5 @@ export default {
 <style scoped>
 .card {
   max-width: 998px;
-}</style>
+}
+</style>

@@ -20,9 +20,9 @@ import { curPage } from './main.js'
               <li class="nav-item">
                 <RouterLink :class="{'nav-link' : true , active: (curPage.page === 'Customers')}" aria-current="page" to="/customers">Customers</RouterLink>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <RouterLink :class="{'nav-link' : true , active: (curPage.page === 'About')}" aria-current="page" to="/about">About</RouterLink>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>

@@ -34,8 +34,21 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
 }
 
+body {
+  background-color: #eee !important;
+}
+
+.card {
+  border: none !important; 
+  /* border-radius: 20px !important; */
+}
+
+.card-header{
+  background-color: white !important;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
