@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Warning":6,"test\\Unit\\ReadTest::testReadData":4,"ReadTest::testReadData":4,"ReadTest::testReadAll":3},"times":{"Warning":0.011,"test\\Unit\\ReadTest::testReadData":0.014,"ReadTest::testReadData":0.088,"ReadTest::testRead":0.057,"ReadTest::testReadAll":0.017}}
+{"version":1,"defects":{"Warning":6,"test\\Unit\\ReadTest::testReadData":4,"ReadTest::testReadData":4,"ReadTest::testReadAll":3},"times":{"Warning":0.011,"test\\Unit\\ReadTest::testReadData":0.014,"ReadTest::testReadData":0.088,"ReadTest::testRead":0.059,"ReadTest::testReadAll":0.015}}

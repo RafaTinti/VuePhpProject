@@ -23,9 +23,7 @@
         // get data from request
         $data = json_decode(file_get_contents("php://input"));
 
-        // Validation
-
-
+        // puts data in customer object
         $customer->FirstName = $data->FirstName;
         $customer->LastName = $data->LastName;
         $customer->DateOfBirth = $data->DateOfBirth;

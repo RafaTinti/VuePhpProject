@@ -25,19 +25,20 @@
         // get data from request
         $data = json_decode(file_get_contents("php://input"));
 
-        // Validation
-
         if(!$data){
             http_response_code(404);
             echo json_encode([
                 "status" => "404",
-                "message" => "No data",
+                "message" => "No data on the request",
             ]);
             return;
         }
+        
         $customer->ID = $data->ID;
 
         $err = $customer->delete();
+
+
         if($err){
             // error
             http_response_code(400);

@@ -13,6 +13,7 @@
         $db = $database->connect();
 
         $customer = new Customer($db);
+        //get id from request params
         $customer->ID = isset($_GET['id']) ? $_GET['id'] : null;
 
         if($customer->ID == null){
